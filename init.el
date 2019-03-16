@@ -30,18 +30,24 @@
 
 ;; Function key Bindings
 
-;; F1 -- Go to a specific line number in the current buffer (file)
+;; [F1] -- Go to a specific line number in the current buffer (file)
 (global-set-key [f1] 'goto-line)
 		
-;; F2 -- Comment out a Marked (highlighted) region of text
+;; [F2] -- Comment out a Marked (highlighted) region of text
 (global-set-key [f2] 'comment-region)
 
-;; F5 -- Switch to a different buffer (file)
+;; [F3] -- Comment out a Marked (highlighted) region of text
+(global-set-key [f3] 'uncomment-region)
+
+;; [F4] -- Cleanup all trailing whitespace
+(global-set-key [f4] 'whitespace-cleanup)
+
+;; [F5] -- Switch to a different buffer (file)
 (global-set-key [f5] 'bury-buffer)
 
 ;; Ctrl+c key bindings
 
-;; Open the Melpa Emacs Package Screen (Ctrl+c -> i)
+;; [Ctrl+c -> i] -- Open the Melpa Emacs Package Screen
 (defun func/open-package-installer ()
   (interactive)
   (package-refresh-contents)
@@ -64,4 +70,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(region ((t (:background "color-95")))))
+ '(region ((t (:background "color-237")))))
