@@ -27,6 +27,17 @@
 ;; Use 4 spaces when tabbing HTML elements
 (setq-default sgml-basic-offset 4)
 
+;; Disable the *Messages* Buffer
+(setq-default message-log-max nil)
+(kill-buffer "*Messages*")
+
+;; Disable the *Completions* buffer
+(add-hook 'minibuffer-exit-hook 
+          '(lambda ()
+             (let ((buffer "*Completions*"))
+               (and (get-buffer buffer)
+                    (kill-buffer buffer)))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom Key Bindings ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -62,19 +73,13 @@
 ;; Hint: Useful for auto-formatting the entire file by pressing (Ctrl+c -> TAB -> TAB)
 (global-set-key (kbd "C-c TAB") 'mark-whole-buffer)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Change Colors of things... ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Load Custom Files inside ~/.emacs.d/custom-lisp ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(region ((t (:background "color-237")))))
+(defun load-directory (dir)
+  (let ((load-it (lambda (f)
+                   (load-file (concat (file-name-as-directory dir) f)))
+                 ))
+    (mapc load-it (directory-files dir nil "\\.el$"))))
+(load-directory "~/.emacs.d/custom-lisp")
