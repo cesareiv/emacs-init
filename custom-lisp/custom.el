@@ -9,7 +9,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (markdown-preview-mode markdown-mode web-mode rjsx-mode jsx-mode docker-compose-mode dockerfile-mode yaml-mode vue-mode json-mode)))
+    (markdown-preview-mode markdown-mode web-mode rjsx-mode jsx-mode docker-compose-mode dockerfile-mode yaml-mode vue-mode json-mode js2-mode)))
  )
 
 (custom-set-faces

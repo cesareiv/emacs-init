@@ -5,6 +5,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; ============================
+;; Basic Customization
+;; ============================
+
+;; Turn off mouse interface early in startup to avoid momentary display
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 ;; No splash screen please ... jeez
 (setq inhibit-startup-message t)
@@ -15,6 +23,11 @@
 
 ;; Prevent Emacs from creating backups of files 
 (setq backup-inhibited t)
+
+;; Smooth scroll
+(setq
+ hscroll-step 1
+ scroll-conservatively 1000)
 
 ;; Prevent Emacs from auto-saving files
 (setq auto-save-default nil)
@@ -63,6 +76,35 @@ Including indent-buffer, which should not be called automatically on save."
   (untabify-buffer)
   (delete-trailing-whitespace)
   (indent-buffer))
+
+;; Show line numbers when goto-line
+(global-set-key [remap goto-line] 'goto-line-with-feedback)
+
+(defun goto-line-with-feedback ()
+  "Show line numbers temporarily, while prompting for the line number input"
+  (interactive)
+  (unwind-protect
+      (progn
+        (linum-mode 1)
+        (goto-line (read-number "Goto line: ")))
+    (linum-mode -1)))
+
+;; Auto refresh buffers
+(global-auto-revert-mode 1)
+
+;; Also auto refresh dired, but be quiet about it
+(setq global-auto-revert-non-file-buffers t)
+(setq auto-revert-verbose nil)
+
+;; Show paren mode
+(show-paren-mode 1)
+
+;; Set color or paren cursor to not uglee
+(require 'paren)
+;;(set-face-background 'show-paren-match (face-background 'default))
+;;(set-face-foreground 'show-paren-match "#def")
+(set-face-attribute 'show-paren-match nil :weight 'extra-bold)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom Key Bindings ;;
