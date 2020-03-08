@@ -24,7 +24,7 @@
 ;; Prevent Emacs from creating backups of files 
 (setq backup-inhibited t)
 
-;; Smooth scroll
+;; Smooth scroll?
 (setq
  hscroll-step 1
  scroll-conservatively 1000)
@@ -43,6 +43,8 @@
 
 ;; Use 2 spaces when tabbing HTML elements
 (setq-default sgml-basic-offset 2)
+
+(setq-default js2-basic-offset 2)
 
 ;; Are we on a mac?
 (setq is-mac (equal system-type 'darwin))
@@ -105,7 +107,7 @@ Including indent-buffer, which should not be called automatically on save."
 ;;(set-face-foreground 'show-paren-match "#def")
 (set-face-attribute 'show-paren-match nil :weight 'extra-bold)
 
-
+            
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom Key Bindings ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -159,12 +161,13 @@ Including indent-buffer, which should not be called automatically on save."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes (quote (gruvbox-dark-hard)))
  '(custom-safe-themes
    (quote
-    ("5c9bd73de767fa0d0ea71ee2f3ca6fe77261d931c3d4f7cca0734e2a3282f439" "8de599adee6766e541af4aa5f01ffc9cfbcbf94adc60a80ccb6caccb3fbceaa1" default)))
+    ("a22f40b63f9bc0a69ebc8ba4fbc6b452a4e3f84b80590ba0a92b4ff599e53ad0" "b583823b9ee1573074e7cbfd63623fe844030d911e9279a7c8a5d16de7df0ed0" "5c9bd73de767fa0d0ea71ee2f3ca6fe77261d931c3d4f7cca0734e2a3282f439" "8de599adee6766e541af4aa5f01ffc9cfbcbf94adc60a80ccb6caccb3fbceaa1" default)))
  '(package-selected-packages
    (quote
-    (markdown-preview-mode markdown-mode web-mode rjsx-mode jsx-mode docker-compose-mode dockerfile-mode yaml-mode vue-mode json-mode))))
+    (add-node-modules-path flycheck gruvbox-theme xref-js2 js2-refactor ## markdown-preview-mode markdown-mode web-mode rjsx-mode jsx-mode docker-compose-mode dockerfile-mode yaml-mode vue-mode json-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
